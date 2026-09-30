@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f7f2">
+    <meta name="description" content="Your personal, Gemini-powered learning space. Understand more, one good question at a time.">
+    <title>EduGenie — your learning space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="/" aria-label="EduGenie home">
+          <span class="brand-mark" aria-hidden="true">e</span>
+          <span>edu<span class="brand-accent">genie</span></span>
+        </a>
+
+        <button class="new-chat" id="new-chat" type="button"><span aria-hidden="true">+</span> New study session</button>
+
+        <div class="nav-group">
+          <p class="nav-label">YOUR SPACE</p>
+          <button class="nav-item active" type="button" data-subject="All subjects"><span class="nav-icon icon-grid" aria-hidden="true"></span> All subjects</button>
+          <button class="nav-item" type="button" data-subject="Mathematics"><span class="nav-icon icon-math" aria-hidden="true">x²</span> Mathematics</button>
+          <button class="nav-item" type="button" data-subject="Science"><span class="nav-icon icon-science" aria-hidden="true">⚛</span> Science</button>
+          <button class="nav-item" type="button" data-subject="Literature"><span class="nav-icon icon-literature" aria-hidden="true">Aa</span> Literature</button>
+          <button class="nav-item" type="button" data-subject="History"><span class="nav-icon icon-history" aria-hidden="true">◷</span> History</button>
+        </div>
+
+        <div class="sidebar-bottom">
+          <div class="week-card">
+            <div class="week-card-top"><span class="sparkle" aria-hidden="true">✳</span><span>YOUR WEEK</span><span class="week-count">3/5</span></div>
+            <div class="week-progress" role="progressbar" aria-label="Weekly study goal" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5"><span></span></div>
+            <p>Two more study days to hit your goal.</p>
+          </div>
+          <button class="profile" type="button" aria-label="Account for Nia Parker">
+            <span class="avatar">NP</span>
+            <span class="profile-copy"><strong>Nia Parker</strong><small>Curious learner</small></span>
+            <span class="profile-menu" aria-hidden="true">···</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <div class="breadcrumb"><span>My learning</span><span class="breadcrumb-slash">/</span><strong id="subject-label">All subjects</strong></div>
+          <div class="topbar-right"><span class="connection-dot" id="connection-dot"></span><span id="connection-label">Checking Gemini</span><button class="help-button" type="button" title="Learning assistant powered by Google Gemini" aria-label="About EduGenie">?</button></div>
+        </header>
+
+        <div class="workspace">
+          <section class="study-column" aria-label="Study assistant">
+            <div class="welcome-row">
+              <div>
+                <p class="eyebrow"><span class="eyebrow-line"></span> WEDNESDAY, SEPTEMBER 30</p>
+                <h1>Make room for<br><em>a little wonder.</em></h1>
+                <p class="welcome-copy">A good question can open up a whole new world. What’s on your mind?</p>
+              </div>
+              <div class="orbit-art" aria-hidden="true">
+                <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+                <div class="orbit-core"><span>e</span></div>
+                <span class="orbit-star star-one">✳</span><span class="orbit-star star-two">✦</span>
+                <span class="orbit-dot dot-one"></span><span class="orbit-dot dot-two"></span>
+              </div>
+            </div>
+
+            <div class="mode-row" role="tablist" aria-label="Study mode">
+              <button class="mode-tab active" type="button" role="tab" aria-selected="true" data-mode="explain"><span class="mode-symbol" aria-hidden="true">↗</span> Explain</button>
+              <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="quiz"><span class="mode-symbol" aria-hidden="true">?</span> Quiz me</button>
+              <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="plan"><span class="mode-symbol" aria-hidden="true">☷</span> Study plan</button>
+            </div>
+
+            <div class="conversation" id="conversation" aria-live="polite" aria-label="Study conversation">
+              <div class="welcome-message" id="welcome-message">
+                <span class="genie-avatar" aria-hidden="true">e</span>
+                <div><strong>Hey Nia, I’m here to help.</strong><p>We can untangle a tricky idea, practise for a test, or map out a plan. Pick a starting point or ask me anything.</p></div>
+              </div>
+              <div class="messages" id="messages"></div>
+              <div class="loading-message hidden" id="loading-message"><span class="genie-avatar" aria-hidden="true">e</span><span class="typing-dots" aria-label="EduGenie is thinking"><i></i><i></i><i></i></span><span class="loading-label">Thinking it through</span></div>
+            </div>
+
+            <div class="suggestions" id="suggestions" aria-label="Suggested questions">
+              <button class="suggestion" type="button" data-prompt="Why do we flip the second fraction when dividing fractions?"><span class="suggestion-mark mark-coral">÷</span><span><small>MATHS</small>Why do we flip fractions to divide?</span><span class="suggestion-arrow" aria-hidden="true">↗</span></button>
+              <button class="suggestion" type="button" data-prompt="Can you explain photosynthesis as if I am 12, with a simple analogy?"><span class="suggestion-mark mark-green">✳</span><span><small>SCIENCE</small>How does photosynthesis work?</span><span class="suggestion-arrow" aria-hidden="true">↗</span></button>
+              <button class="suggestion" type="button" data-prompt="Help me make a 30-minute study plan for my upcoming exam."><span class="suggestion-mark mark-blue">◷</span><span><small>STUDY SKILLS</small>Make me a study plan</span><span class="suggestion-arrow" aria-hidden="true">↗</span></button>
+            </div>
+
+            <form class="composer" id="ask-form">
+              <label class="sr-only" for="question-input">Ask your learning assistant</label>
+              <textarea id="question-input" rows="1" maxlength="4000" placeholder="Ask anything you’re curious about…"></textarea>
+              <div class="composer-bottom"><span class="composer-hint"><span class="key-hint">↵</span> to send <span class="hint-divider">·</span> <span class="key-hint">⇧ ↵</span> new line</span><button class="send-button" id="send-button" type="submit" aria-label="Send question"><span>Ask EduGenie</span><span aria-hidden="true">↗</span></button></div>
+            </form>
+            <p class="privacy-note"><span aria-hidden="true">✳</span> A curious mind is a powerful thing. Keep asking.</p>
+          </section>
+
+          <aside class="insights-column" aria-label="Your learning progress">
+            <div class="insight-heading"><span class="insight-icon" aria-hidden="true">✳</span><div><h2>Your rhythm</h2><p>Small steps add up.</p></div><button class="more-button" type="button" aria-label="More learning insights">···</button></div>
+            <div class="streak-block">
+              <div class="streak-number">3<span>days</span><span class="streak-flame" aria-hidden="true">✦</span></div>
+              <p>in a row. You’re building<br>a lovely little habit.</p>
+              <div class="streak-week" aria-label="Study activity this week"><span><i class="done">M</i><small>MON</small></span><span><i class="done">T</i><small>TUE</small></span><span><i class="today">W</i><small>WED</small></span><span><i> T</i><small>THU</small></span><span><i>F</i><small>FRI</small></span><span><i>S</i><small>SAT</small></span><span><i>S</i><small>SUN</small></span></div>
+            </div>
+
+            <div class="insight-divider"></div>
+
+            <section class="focus-section">
+              <div class="section-title"><h3>Pick up where you left off</h3><button class="text-button" type="button" data-prompt="Help me review the basics of algebra and give me a quick practice question.">Review <span aria-hidden="true">↗</span></button></div>
+              <button class="focus-item" type="button" data-prompt="Help me review algebra basics, especially solving for x."><span class="focus-icon focus-math">x²</span><span class="focus-info"><strong>Algebra basics</strong><small>Mathematics <i>·</i> 12 min ago</small><span class="focus-progress"><i></i></span></span><span class="focus-arrow" aria-hidden="true">↗</span></button>
+              <button class="focus-item" type="button" data-prompt="Quiz me on the causes and key events of the French Revolution."><span class="focus-icon focus-history">◷</span><span class="focus-info"><strong>The French Revolution</strong><small>History <i>·</i> Yesterday</small><span class="focus-progress history-progress"><i></i></span></span><span class="focus-arrow" aria-hidden="true">↗</span></button>
+            </section>
+
+            <div class="quote-card"><span class="quote-mark" aria-hidden="true">“</span><blockquote>The beautiful thing about learning is that no one can take it away from you.</blockquote><cite>— B.B. King</cite><span class="quote-sparkle" aria-hidden="true">✳</span></div>
+
+            <div class="gemini-note"><span class="gemini-glyph" aria-hidden="true">✦</span><span>Thoughtful answers, powered by <strong>Google Gemini</strong></span></div>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
